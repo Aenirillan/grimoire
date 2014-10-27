@@ -1,3 +1,4 @@
 Grimoire
 =========
-An update of a very useful add on.
+A dynamically generated database of NPC spells.  This is an update
+of the MobSpells add-on.

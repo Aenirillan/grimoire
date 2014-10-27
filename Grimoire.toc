@@ -1,0 +1,5 @@
+## Interface: 60000
+## Title: Grimoire
+## Notes: A dynamically generated database of NPC spells.
+## Author: Aenirillan
+## DefaultState: disabled
