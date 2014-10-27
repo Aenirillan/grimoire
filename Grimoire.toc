@@ -3,3 +3,8 @@
 ## Notes: A dynamically generated database of NPC spells.
 ## Author: Aenirillan
 ## DefaultState: disabled
+
+Init.lua
+Events.lua
+localisation\localisation.xml
+ScratchPad.lua

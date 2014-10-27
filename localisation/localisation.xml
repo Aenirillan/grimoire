@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="Locale.lua" />
+	<!--
+	The first locale file will be the default that must define all the entries
+	to be used. Any subsequent locale that fails to provide a translation will
+	default to the value in the default locale.
+	-->
+	<Script file="enUS.lua" />
+</Ui>
