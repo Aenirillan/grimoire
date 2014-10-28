@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="Frames.lua" />
+	<Font name="GrimoireOptionEnabled" inherits="GameFontHighlight" virtual="true" />
+	<Font name="GrimoireOptionDisabled" inherits="GameFontDisable" virtual="true" />
+	<Font name="GrimoireOptionEnabledSmall" inherits="GameFontHighlightSmall" virtual="true" />
+	<Font name="GrimoireOptionDisabledSmall" inherits="GameFontDisableSmall" virtual="true" />
+	<Frame name="GrimoirePreviousFrame" />
+	<CheckButton name="GrimoireOptionsCheckButtonTemplate" virtual="true" inherits="OptionsBaseCheckButtonTemplate" parentArray="children">
+		<Size>
+			<AbsDimension x="26" y="26"/>
+		</Size>
+		<HitRectInsets>
+			<AbsInset left="0" right="-100" top="0" bottom="0"/>
+		</HitRectInsets>
+		<Scripts>
+			<OnEnable>self.text:SetFontObject("GrimoireOptionEnabled")</OnEnable>
+			<OnDisable>self.text:SetFontObject("GrimoireOptionDisabled")</OnDisable>
+		</Scripts>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString inherits="GrimoireOptionEnabled" parentKey="text">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</CheckButton>
+	<CheckButton name="GrimoireOptionsCheckButtonTemplateSmall" virtual="true" inherits="GrimoireOptionsCheckButtonTemplate" >
+		<Scripts>
+			<OnEnable>self.text:SetFontObject("GrimoireOptionEnabledSmall")</OnEnable>
+			<OnDisable>self.text:SetFontObject("GrimoireOptionDisabledSmall")</OnDisable>
+		</Scripts>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString inherits="GrimoireOptionEnabledSmall" parentKey="text">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</CheckButton>
+	<Frame>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString text="Grimiore" inherits="GameFontNormalLarge" justifyH="LEFT" justifyV="TOP" parentArray="children">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="16" y="-16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString text="A dynamically generated database of NPC spells.  Browsable, with the ability to link spell lists to other players." inherits="GameFontHighlightSmall" nonspacewrap="true" maxLines="3" justifyH="LEFT" justifyV="TOP" parentArray="children">
+					<Size>
+						<AbsDimension y="32" x="0"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="GrimoirePreviousFrame" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-8"/>
+							</Offset>
+						</Anchor>
+						<Anchor point="RIGHT">
+							<Offset>
+								<AbsDimension x="-32" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<CheckButton inherits="GrimoireOptionsCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="GrimoirePreviousFrame" x="0" y="-8" relativePoint="BOTTOMLEFT" />
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						Grimoire.Options.controls.world:attach(self)
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<CheckButton inherits="GrimoireOptionsCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="GrimoirePreviousFrame" relativePoint="BOTTOMLEFT" y="-8" />
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						Grimoire.Options.controls.instances:attach(self)
+					</OnLoad>
+				</Scripts>
+			</CheckButton>
+			<Frame parentArray="children" parentKey="instanceTypes">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="GrimoirePreviousFrame" relativePoint="BOTTOMLEFT" x="16" y="4" />
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						Grimoire.Options:populateInstances(self)
+					</OnLoad>
+				</Scripts>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				Grimoire.SequentialLayout(self.children, GrimoirePreviousFrame)
+				self.name = "Grimoire"
+				function self.refresh()
+					Grimoire.Options:OnInterfaceOptionsRefresh()
+				end
+				function self.okay()
+					Grimoire.Options:OnInterfaceOptionsOkay()
+				end
+				function self.default()
+					Grimoire.Options:OnInterfaceOptionsDefault()
+				end
+				function self.cancel()
+					Grimoire.Options:OnInterfaceOptionsCancel()
+				end
+				InterfaceOptions_AddCategory(self)
+			</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

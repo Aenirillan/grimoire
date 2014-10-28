@@ -3,10 +3,8 @@ setfenv(1, addonPrivate)
 
 local L = Locales.Get("enUS")
 
-L["greets you!"] = "greets you!"
-L["Zone Changed"] = "Zone Changed"
-L["Zone/Subzone"] = "Zone/Subzone"
-L["Real zone/Minimap zone"] = "Real zone/Minimap zone"
+L["Grimoire"] = "Grimoire"
+
 L["CHECK_THE_WORLD"] = "The World"
 L["CHECK_THE_WORLD_TOOLTIP"] = "Record spells cast by NPCs while questing in World zones."
 L["CHECK_INSTANCES"] = "Instances"

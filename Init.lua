@@ -1,5 +1,8 @@
 local addonName, addonPrivate = ...
-local addonNamespace = {}
-_G[addonName] = addonNamespace
-setmetatable(addonNamespace, {__index = _G})
+
+Grimoire = {}
+Grimoire.addonName = addonName
+
+setmetatable(Grimoire, {__index = _G})
 setmetatable(addonPrivate, {__index = _G})
+
